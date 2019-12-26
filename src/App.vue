@@ -1,0 +1,114 @@
+<template>
+    <div class="container">
+        <Header/>
+        <section class="slider">
+            <div class="items">
+                <Item
+                    v-for="item in forSale"
+                    :key="item.invId"
+                    :invId="item.invId"
+                    :name="item.name"
+                    :description="item.description"
+                    :cover="item.cover"
+                    :price="item.price" />
+            </div>
+        </section>
+    </div>
+</template>
+<script>
+import Header from './Header.vue';
+import Item from './Item.vue';
+
+export default {
+    name: 'app',
+    computed: {
+        forSale() { return this.$store.getters.forSale; },
+        inCart() { return this.$store.getters.inCart; },
+    },
+    components: {
+        Item,
+        Header
+    },
+};
+</script>
+<style lang="scss">
+    @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|PT+Sans:400,700&display=swap&subset=cyrillic');
+    *{
+        font-family: 'Open Sans', sans-serif;
+    }
+    .container{
+        position: relative;
+        z-index: 6;
+        max-height: 100%;
+        margin: 0 20px;
+    }
+    .items{
+        display:flex;
+        width: 100%;
+        // overflow-x:scroll;
+        .item{
+            min-width: calc(25% - 20px);
+            padding: 10px 10px;
+            transition: 0.3s ease-in-out;
+            .card{
+                padding: 10px 20px;
+                width: calc(100% - 40px);
+                background-color: white;
+                border-radius:5px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                -webkit-box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.21);
+                -moz-box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.21);
+                box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.21);
+                transition: 0.3s ease-in-out;
+                .title{
+                    font-size: 16px;
+                    font-weight: 600;
+                }
+                .img{
+                    max-width:100%;
+                    height:200px;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    margin:1rem 0 3rem;
+                }
+                .description{
+                    font-size: 12px;
+                }
+                .price{
+                    text-align: right;
+                    font-size: 28px;
+                    font-weight: 800;
+                    margin-bottom:1rem;
+                }
+            }
+            &:hover{
+                min-width: calc(25% - 0px);
+                padding: 10px 0px; 
+                margin:-20px 0;
+                .card{
+                    -webkit-box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.11);
+                    -moz-box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.11);
+                    box-shadow: 3px 30px 10px 0px rgba(0,0,0,0.05);
+                }
+            }
+        }
+    }
+    .btn{
+        background: #5eb4ff;
+        color:white;
+        border:none;
+        border-radius:2px;
+        padding: 10px 0;
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+        font-weight: 600;
+        font-size: 16px;
+        &:hover{
+            background: #ffff86;
+            color: #5eb4ff;
+        }
+    }
+</style>
