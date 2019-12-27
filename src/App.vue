@@ -32,7 +32,7 @@ export default {
 };
 </script>
 <style lang="scss">
-    @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|PT+Sans:400,700&display=swap&subset=cyrillic');
+    @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap&subset=cyrillic');
     *{
         font-family: 'Open Sans', sans-serif;
     }
@@ -50,6 +50,7 @@ export default {
             min-width: calc(25% - 20px);
             padding: 10px 10px;
             transition: 0.3s ease-in-out;
+            cursor: default;
             .card{
                 padding: 10px 20px;
                 width: calc(100% - 40px);
@@ -64,7 +65,7 @@ export default {
                 transition: 0.3s ease-in-out;
                 .title{
                     font-size: 16px;
-                    font-weight: 600;
+                    font-weight: 700;
                 }
                 .img{
                     max-width:100%;
@@ -85,13 +86,13 @@ export default {
                 }
             }
             &:hover{
-                min-width: calc(25% - 0px);
-                padding: 10px 0px; 
+                min-width: calc(25% - 10px);
+                padding: 10px 5px; 
                 margin:-20px 0;
                 .card{
-                    -webkit-box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.11);
-                    -moz-box-shadow: 3px 3px 3px 0px rgba(0,0,0,0.11);
-                    box-shadow: 3px 30px 10px 0px rgba(0,0,0,0.05);
+                    -webkit-box-shadow: 3px 25px 10px 0px rgba(0,0,0,0.07);
+                    -moz-box-shadow: 3px 25px 10px 0px rgba(0,0,0,0.07);
+                    box-shadow: 3px 25px 10px 0px rgba(0,0,0,0.07);
                 }
             }
         }

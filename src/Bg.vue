@@ -1,7 +1,7 @@
 <template>
     <div id="bg">
         <div id="bg-blob">
-            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1153.033" height="914.924" viewBox="0 0 1153.033 914.924">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="753.033" height="514.924" viewBox="0 0 1153.033 914.924">
                 <defs>
                     <filter id="Path_1" x="0" y="0" width="1153.033" height="914.924" filterUnits="userSpaceOnUse">
                     <feOffset dy="3" input="SourceAlpha"/>
@@ -17,14 +17,14 @@
             </svg>
         </div>
         <div id="bg-circle">
-            <svg xmlns="http://www.w3.org/2000/svg" width="1275" height="929.075" viewBox="0 0 1275 929.075">
+            <svg xmlns="http://www.w3.org/2000/svg" width="875" height="529.075" viewBox="0 0 1275 929.075">
                 <path id="Path_6" data-name="Path 6" d="M637.5,0C989.582,0,1275,279.6,1275,624.5a614.036,614.036,0,0,1-81.067,304.575s-1113.214-.044-1113.238-.067A613.434,613.434,0,0,1,0,624.5C0,279.6,285.418,0,637.5,0Z" fill="#ffff86"/>
             </svg>
         </div>
         <div id="bg-border">
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="891.741" height="958.44" viewBox="0 0 891.741 958.44">
                 <defs>
-                    <filter id="Path_2" x="0" y="0" width="891.741" height="958.44" filterUnits="userSpaceOnUse">
+                    <filter id="Path_2" x="0" y="0" width="591.741" height="658.44" filterUnits="userSpaceOnUse">
                     <feOffset dy="3" input="SourceAlpha"/>
                     <feGaussianBlur stdDeviation="6" result="blur"/>
                     <feFlood flood-opacity="0.161"/>
@@ -38,12 +38,15 @@
             </svg>
         </div>
         <div id="bg-triangle">
-            <svg xmlns="http://www.w3.org/2000/svg" width="902.293" height="579.853" viewBox="0 0 902.293 579.853">
+            <svg xmlns="http://www.w3.org/2000/svg" width="802.293" height="479.853" viewBox="0 0 902.293 579.853">
                 <path id="Path_5" data-name="Path 5" d="M446.632,19.556c.169-.583,18.411-10.151,22.181-3.117L912.105,843.275A10,10,0,0,1,903.292,858l-338.623,1.436S444.055,24.682,446.632,19.556Z" transform="translate(-75.887 902.488) rotate(-82)" fill="#5eb4ff"/>
             </svg>
         </div>
     </div>
 </template>
+<script>
+
+</script>
 <style lang="scss">
     #bg{
         position:absolute;
