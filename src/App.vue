@@ -16,8 +16,8 @@
     </div>
 </template>
 <script>
-import Header from './Header.vue';
-import Item from './Item.vue';
+import Header from './assets/components/Header.vue';
+import Item from './assets/components/Item.vue';
 
 export default {
     name: 'app',
