@@ -102,7 +102,7 @@ export default {
         color:white;
         border:none;
         border-radius:2px;
-        padding: 10px 0;
+        padding: 10px 20px;
         cursor: pointer;
         transition: 0.3s ease-in-out;
         font-weight: 600;

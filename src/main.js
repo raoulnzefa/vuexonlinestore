@@ -2,7 +2,8 @@ import Vue from 'vue'
 import App from './App.vue'
 import Bg from './Bg.vue'
 import store from './store';
-import VModal from 'vue-js-modal'
+import VModal from 'vue-js-modal';
+import 'babel-polyfill';
  
 Vue.use(VModal)
 

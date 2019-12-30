@@ -5,25 +5,31 @@
             <div class="count">{{ numInCart }}</div>
             <div class="label">cart</div>
         </div>
-        <modal name="cart" height="auto">
+        <modal name="cart" height="auto" :scrollable="true">
             <div class="cart-header">
                 <div class="title">Shopping cart</div>
                 <div class="close" @click="hide">&#935;</div>
             </div>
             <div class="cart-body">
-                <div class="item">
-                    <div class="img" :style="{ backgroundImage: `url('${cover}')` }"></div>
-                    <div class="text">
-                        <div class="title">{{ name }}</div>
-                        <div class="description">{{ description }}</div>
-                        <div class="price">${{ price }}</div>
-                    </div>
-                    <div class="counting">
-                        <integer-plusminus></integer-plusminus>
-                        <div class="price">${{ price }}</div>
-                        <button class="btn" @click="addToCart(invId)">Remove</button>
+                <div class="item" v-for="(item, index) in cart">
+                    <div class="img" :style="{ backgroundImage: `url('${item.cover}')` }"></div>
+                    <div class="info">
+                        <div class="text">
+                            <div class="title">{{ item.name }}</div>
+                            <div class="description">{{ item.description }}</div>
+                            <div class="price">${{ item.price }}</div>
+                        </div>
+                        <div class="counting">
+                            <integer-plusminus :min="1" v-model="item.times"></integer-plusminus>
+                            <div class="cost">${{ item.price }}</div>
+                            <button class="btn" @click="removeFromCart(index)">Remove</button>
+                        </div>
                     </div>
                 </div>
+            </div>
+            <div class="cart-footer">
+                <button class="btn" @click="addToCart(invId)">Check out</button>
+                <div class="total">${{ total }}</div>
             </div>
         </modal>
     </header>
@@ -45,6 +51,9 @@ export default {
                 });
             });
         },
+        total() {
+            return this.cart.reduce((acc, cur) => acc + cur.price, 0);
+        },
     },
     components: { IntegerPlusminus },
     methods: {
@@ -53,7 +62,10 @@ export default {
         },
         hide () {
             this.$modal.hide('cart');
-        }
+        },
+        removeFromCart(index) {
+            this.$store.dispatch('removeFromCart', index);
+        },
     },
 };
 </script>
@@ -106,12 +118,90 @@ export default {
                 }
             }
         }
-    }
-    .cart{
+        &-body{
+            padding:20px;
+            .item{
+                border-radius: 10px;
+                -webkit-box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.21);
+                -moz-box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.21);
+                box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.21);
+                padding: 20px;
+                margin-bottom: 20px;
+                background-color: white;
+                display: flex;
+                .img{
+                    width:200px;
+                    height:auto;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                }
+                .info{
+                    display: flex;
+                    justify-content: space-between;
+                    width:100%;
+                    .text{
+                        padding-left: 20px;
+                        .title{
+                            font-weight: 500;
+                        }
+                        .description{
+                            font-size: 14px;
+                            font-weight: 300;
+                        }
+                        .price{
+                            font-weight: 700;
+                            position: relative;
+                            bottom: 0;
+                            top: 10px;
+                            font-size: 18px;
+                        }
+                    }
+                    .counting{
+                        .int-pm {
+                            .int-pm-btn{
+                                background-color: #5eb4ff;
+                                border:none;
+                                color:white;
+                                font-size: 18px;
+                                padding:5px 12.5px;
+                                border-radius: 2px;
+                                font-weight: 700;
+                            }
+                            .int-pm-value{
+                                margin: 0 10px;
+                                border:1px solid #5eb4ff;
+                                border-radius: 2px;
+                                padding: 5px 12.5px;
+                            }
+                        }
+                        .cost{
+                            margin: 10px 0;
+                            font-weight: 700;
+                            font-size: 22px;
+                        }
+                        .btn{
+                            width: 100%;
+                            font-size:14px;
+                            font-weight: 400;
+                        }
+                    }
+                }
+            }
+        }
+        &-footer{
+            padding:0 20px 20px;
+            display: flex;
+            .total{
+                font-weight: 800;
+                font-size: 26px;
+                margin-left: 20px;
+            }
+        }
         &-header{
             display: flex;
             justify-content: space-between;
-            padding: 35px 50px;
+            padding: 35px 50px 0;
             width: calc(100% - 100px);       
             .title{
                 font-size: 18px;
@@ -139,5 +229,8 @@ export default {
         border-top-left-radius: 50px;
         border-bottom-right-radius: 300px;
         overflow:initial;
+    }
+    .v--modal-block-scroll {
+        width: initial;
     }
 </style>
