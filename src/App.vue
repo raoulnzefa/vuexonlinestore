@@ -45,7 +45,23 @@ export default {
     .items{
         display:flex;
         width: 100%;
-        // overflow-x:scroll;
+        overflow-x:scroll;
+        overflow-y:hidden;
+        height: 470px;
+        padding-top: 25px;
+        &::-webkit-scrollbar {
+        width: 10px;
+        }
+        
+        &::-webkit-scrollbar-track {
+            background:none;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+        background-color: #5eb4ff;
+        width: 0.5rem;
+        border-radius: 10px;
+        }
         .item{
             min-width: calc(25% - 20px);
             padding: 10px 10px;
@@ -64,7 +80,7 @@ export default {
                 box-shadow: 2px 2px 3px 0px rgba(0,0,0,0.21);
                 transition: 0.3s ease-in-out;
                 .title{
-                    font-size: 16px;
+                    font-size: 15px;
                     font-weight: 700;
                 }
                 .img{
@@ -77,6 +93,9 @@ export default {
                 }
                 .description{
                     font-size: 12px;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden; 
                 }
                 .price{
                     text-align: right;
