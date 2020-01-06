@@ -50,7 +50,7 @@ export default new Vuex.Store({
   },
   getters: {
     forSale: state => state.forSale,
-    inCart: state => state.inCart,
+    inCart: state =>  state.inCart,
   },
   mutations: {
     ADD_TO_CART(state, invId) { state.inCart.push(invId); },
