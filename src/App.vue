@@ -13,6 +13,7 @@
                     :price="item.price" />
             </div>
         </section>
+        {{ inCart }}
     </div>
 </template>
 <script>
@@ -24,6 +25,7 @@ export default {
     computed: {
         forSale() { return this.$store.getters.forSale; },
         inCart() { return this.$store.getters.inCart; },
+        inCart() { return this.$store.getters.cartItems; },
     },
     components: {
         Item,

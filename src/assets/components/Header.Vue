@@ -11,8 +11,8 @@
                 <div class="close" @click="hide">&#935;</div>
             </div>
             <div class="modal-body">
-                <div class="item" v-for="(item, index) in cart">
-                    <div class="img" :style="{ backgroundImage: `url('${item.cover}')` }"></div>
+                <div class="item" v-for="(item, index) in products">
+                    <div class="img" :style="{ backgroundImage: `url('${item.img}')` }"></div>
                     <div class="info">
                         <div class="text">
                             <div class="title">{{ item.name }}</div>
@@ -20,9 +20,13 @@
                             <div class="price">${{ item.price }}</div>
                         </div>
                         <div class="counting">
-                            <integer-plusminus :min="1" v-model="item.times"></integer-plusminus>
+                            <div class="plusminus">
+                                <div class="btn" @click="decrementItemQuantity">-</div>
+                                <div>{{item.quantity}}</div>
+                                <div class="btn" @click="incrementItemQuantity">+</div>
+                            </div>
                             <div class="cost">${{ item.price }}</div>
-                            <button class="btn" @click="removeFromCart(index)">Remove</button>
+                            <button classf="btn" @click="removeFromCart(index)">Remove</button>
                         </div>
                     </div>
                 </div>
@@ -35,7 +39,6 @@
     </header>
 </template>
 <script>
-import { IntegerPlusminus } from 'vue-integer-plusminus'
 export default {
     name: 'header',
     data: {
@@ -45,17 +48,19 @@ export default {
         inCart() { return this.$store.getters.inCart; },
         numInCart() { return this.inCart.length; },
         cart() {
-            return this.$store.getters.inCart.map((cartItem) => {
+            return this.$store.getters.inCart.map((inCartItem) => {
                 return this.$store.getters.forSale.find((forSaleItem) => {
-                    return cartItem === forSaleItem.invId;
+                    return inCartItem.id === forSaleItem.invId;
                 });
             });
         },
         total() {
             return this.cart.reduce((acc, cur) => acc + cur.price, 0);
         },
+        products () {
+            return this.$store.getters.cartItems
+        },
     },
-    components: { IntegerPlusminus },
     methods: {
         show () {
             this.$modal.show('cart');
@@ -65,6 +70,12 @@ export default {
         },
         removeFromCart(index) {
             this.$store.dispatch('removeFromCart', index);
+        },
+        incrementItemQuantity(cartItem) {
+            this.$store.dispatch('incrementItemQuantity', cartItem);
+        },
+        decrementItemQuantity(cartItem) {
+            this.$store.dispatch('decrementItemQuantity', cartItem);
         },
     },
 };

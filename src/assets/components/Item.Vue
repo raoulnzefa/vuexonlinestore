@@ -34,12 +34,6 @@ export default {
     addToCart(invId) {
       this.$store.dispatch('addToCart', invId);
     },
-    // show () {
-    //     this.$modal.show("'Item-' + invId");
-    // },
-    // hide () {
-    //     this.$modal.hide("'Item-' + invId");
-    // },
   },
 };
 </script>
