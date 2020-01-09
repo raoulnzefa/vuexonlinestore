@@ -1,9 +1,9 @@
 <template>
-    <div class="item" @click="$modal.show('item-' + invId)">
+    <div class="item">
         <div class="card">
-            <div class="img" :style="{ backgroundImage: `url('${cover}')` }"></div>
-            <div class="title">{{ name }}</div>
-            <div class="description">{{ description }}</div>
+            <div class="img" :style="{ backgroundImage: `url('${cover}')` }" @click="$modal.show('item-' + invId)"></div>
+            <div class="title"  @click="$modal.show('item-' + invId)">{{ name }}</div>
+            <div class="description" @click="$modal.show('item-' + invId)">{{ description }}</div>
             <div class="price">${{ price }}</div>
             <button class="btn" @click="addToCart(invId)">Add to cart</button>
         </div>
@@ -62,5 +62,9 @@ export default {
         margin-right: 20px;
       }
     }
+  }
+  .v--modal-overlay .v--modal-box{
+      border-radius: 15px;
+      overflow: initial;
   }
 </style>

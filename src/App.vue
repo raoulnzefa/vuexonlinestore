@@ -13,7 +13,6 @@
                     :price="item.price" />
             </div>
         </section>
-        {{ inCart }}
     </div>
 </template>
 <script>
@@ -203,8 +202,9 @@ export default {
                         }
                     }
                     .counting{
-                        .int-pm {
-                            .int-pm-btn{
+                        .plusminus {
+                            display: flex;
+                            &-btn{
                                 background-color: #5eb4ff;
                                 border:none;
                                 color:white;
@@ -213,7 +213,7 @@ export default {
                                 border-radius: 2px;
                                 font-weight: 700;
                             }
-                            .int-pm-value{
+                            &-num{
                                 margin: 0 10px;
                                 border:1px solid #5eb4ff;
                                 border-radius: 2px;

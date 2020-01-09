@@ -11,22 +11,22 @@
                 <div class="close" @click="hide">&#935;</div>
             </div>
             <div class="modal-body">
-                <div class="item" v-for="(item, index) in products">
+                <div class="item" v-for="item in products">
                     <div class="img" :style="{ backgroundImage: `url('${item.img}')` }"></div>
                     <div class="info">
                         <div class="text">
-                            <div class="title">{{ item.name }}</div>
-                            <div class="description">{{ item.description }}</div>
+                            <div class="title">{{ item.title }}</div>
+                            <div class="description">{{ item.info }}</div>
                             <div class="price">${{ item.price }}</div>
                         </div>
                         <div class="counting">
                             <div class="plusminus">
-                                <div class="btn" @click="decrementItemQuantity">-</div>
-                                <div>{{item.quantity}}</div>
-                                <div class="btn" @click="incrementItemQuantity">+</div>
+                                <div class="plusminus-btn" @click="decrementItemQuantity(item.id)">-</div>
+                                <div class="plusminus-num">{{item.quantity}}</div>
+                                <div class="plusminus-btn" @click="incrementItemQuantity(item.id)">+</div>
                             </div>
-                            <div class="cost">${{ item.price }}</div>
-                            <button classf="btn" @click="removeFromCart(index)">Remove</button>
+                            <div class="cost">${{ item.sum }}</div>
+                            <button class="btn" @click="removeFromCart(index)">Remove</button>
                         </div>
                     </div>
                 </div>
@@ -55,10 +55,10 @@ export default {
             });
         },
         total() {
-            return this.cart.reduce((acc, cur) => acc + cur.price, 0);
+            return this.$store.getters.cartItems.reduce((acc, cur) => acc + cur.price * cur.quantity, 0);
         },
         products () {
-            return this.$store.getters.cartItems
+            return this.$store.getters.cartItems;
         },
     },
     methods: {
@@ -71,11 +71,11 @@ export default {
         removeFromCart(index) {
             this.$store.dispatch('removeFromCart', index);
         },
-        incrementItemQuantity(cartItem) {
-            this.$store.dispatch('incrementItemQuantity', cartItem);
+        incrementItemQuantity(id) {
+            this.$store.dispatch('incrementItemQuantity', id);
         },
-        decrementItemQuantity(cartItem) {
-            this.$store.dispatch('decrementItemQuantity', cartItem);
+        decrementItemQuantity(id) {
+            this.$store.dispatch('decrementItemQuantity', id);
         },
     },
 };
