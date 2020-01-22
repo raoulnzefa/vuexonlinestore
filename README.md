@@ -1,6 +1,6 @@
-# probot-spa
+# Online store, with vue.js and vuex attached
 
-> A Vue.js project
+> Code example for you! 
 
 ## Build Setup
 

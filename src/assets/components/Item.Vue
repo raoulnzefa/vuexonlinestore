@@ -31,7 +31,7 @@ export default {
     showItem: false,
   },
   methods: {
-    addToCart(invId) {
+    addToCart(invId) {  
       this.$store.dispatch('addToCart', invId);
     },
   },

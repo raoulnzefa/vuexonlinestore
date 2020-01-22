@@ -21,6 +21,9 @@ import Item from './assets/components/Item.vue';
 
 export default {
     name: 'app',
+    mounted() {
+        this.$store.dispatch('getForSale');
+    },
     computed: {
         forSale() { return this.$store.getters.forSale; },
         inCart() { return this.$store.getters.inCart; },
